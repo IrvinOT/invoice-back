@@ -36,6 +36,8 @@ gem "bootsnap", require: false
 
 #Pagination
 gem "kaminari"
+#CORS
+gem 'rack-cors'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
