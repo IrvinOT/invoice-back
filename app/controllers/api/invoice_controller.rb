@@ -12,12 +12,20 @@ class Api::InvoiceController < Api::ApiController
 
     page = params[:page] || 1
     page_size = params[:page_size] || 10
-    invoices = Invoice.where(invoice_date: start_date.beginning_of_day..end_date.end_of_day)
-                        .page(page)
-                        .per(page_size)
+    cache_key = "invoices/#{start_date}/#{end_date}"
+    invoice_ids = Rails.cache.fetch(cache_key, expires_in: 10.minutes) do
+      Invoice.where(invoice_date: start_date.beginning_of_day..end_date.end_of_day)
+             .pluck(:id)
+    end
+
+    invoices = Invoice.where(id: invoice_ids)
+              .page(page)
+              .per(page_size)
+
     render json: {
       data: invoices,
       page: invoices.current_page,
+      records: invoices.total_count,
       total_pages: invoices.total_pages
     }
   end
