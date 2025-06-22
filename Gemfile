@@ -39,6 +39,8 @@ gem "kaminari"
 #CORS
 gem 'rack-cors'
 
+gem 'mailtrap'
+
 gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do

@@ -157,6 +157,7 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailtrap (2.3.0)
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
@@ -356,6 +357,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  mailtrap
   pg (~> 1.1)
   puma (>= 5.0)
   rack-cors
