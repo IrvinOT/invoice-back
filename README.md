@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Invoice Back - Prueba Técnica
 
-Things you may want to cover:
+Este proyecto es el backend para una prueba técnica. Consiste en una API desarrollada en Ruby on Rails para la gestión y consulta de facturas (invoices). Forma parte de un sistema dividido en dos repositorios:
 
-* Ruby version
+- **Backend (este repositorio):** Ruby on Rails
+- **Frontend:** Angular (repositorio separado)
 
-* System dependencies
+## Requisitos
+- Ruby 3.1.0
+- PostgreSQL
+- Bundler
 
-* Configuration
+## Configuración y ejecución
 
-* Database creation
 
-* Database initialization
+1. **Instala las dependencias:**
+   ```sh
+   bundle install
+   ```
 
-* How to run the test suite
+2. **Configura las variables de entorno:**
+   - Copia el archivo `.env.example` a `.env` y edítalo con tus credenciales de base de datos.
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+3. **Ejecuta el servidor:**
+   ```sh
+   rails server
+   ```
+   El backend estará disponible en `http://localhost:3000`.
 
-* ...
+## Notas
+- El frontend en Angular debe consumir los endpoints de este backend.
+---
