@@ -10,10 +10,26 @@ class TopSalesDaysReportJob < ApplicationJob
       .order("total_day DESC")
       .limit(10)
 
-    table_body = report.each_with_index { |invoice_day, index| row_table(index, invoice_day) }.join
-    mail = mailtrap_template(table_body)
+    table_body = report.map.with_index { |invoice_day, index| row_table(index, invoice_day) }.join
+    table = full_table(table_body)
+    mail = mailtrap_template(table)
     client = client_email 
     client.send(mail)
+  end
+
+  def full_table(rows)
+    "<table border='1' cellpadding='8' cellspacing='0'>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Day</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        #{rows}
+      </tbody>
+  </table>"
   end
 
   def row_table(index, invoice_day)
@@ -24,7 +40,7 @@ class TopSalesDaysReportJob < ApplicationJob
     </tr>"
   end
 
-  def mailtrap_template(table_body)
+  def mailtrap_template(table)
     Mailtrap::Mail::FromTemplate.new(
       from:
       {
@@ -37,7 +53,7 @@ class TopSalesDaysReportJob < ApplicationJob
         }
       ],
       template_uuid: "1f481856-9cd5-4344-be01-906b91a7a307",
-      template_variables: {"table_body" => table_body}
+      template_variables: {"full_table" => table}
       )
   end 
 
