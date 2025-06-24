@@ -11,4 +11,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  namespace :api do
+    scope :invoice do
+      get '/', to: 'invoice#index'
+    end
+  end
 end

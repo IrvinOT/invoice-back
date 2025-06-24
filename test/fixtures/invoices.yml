@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invoice_number: MyString
+  total: 9.99
+  invoice_date: 2025-06-17 18:01:56
+  status: MyString
+
+two:
+  invoice_number: MyString
+  total: 9.99
+  invoice_date: 2025-06-17 18:01:56
+  status: MyString
